@@ -1,0 +1,194 @@
+{
+  "project_name": "Bloom & Vibe - The Anti-Boring Flower Shop",
+  "design_philosophy": {
+    "core_concept": "Nature's Paintbrush",
+    "vibe": "Vibrant, Playful, Editorial, Organic",
+    "archetype": "Vibrant Play x Organic Earthy",
+    "principles": [
+      "No generic white e-commerce grids. Use color blocking.",
+      "Typography must feel like a magazine, not a spreadsheet.",
+      "Motion is mandatory. Flowers are alive; the UI should be too.",
+      "Gifting is the core use case. Prioritize 'Emotions' over 'Categories'."
+    ]
+  },
+  "typography": {
+    "font_family": {
+      "heading": "Playfair Display, serif",
+      "body": "Manrope, sans-serif",
+      "accent": "Caveat, cursive"
+    },
+    "installation_guide": [
+      "Use @fontsource packages or Google Fonts.",
+      "import '@fontsource/playfair-display/400.css';",
+      "import '@fontsource/playfair-display/600.css';",
+      "import '@fontsource/manrope/400.css';",
+      "import '@fontsource/manrope/500.css';",
+      "import '@fontsource/manrope/700.css';",
+      "import '@fontsource/caveat/400.css';"
+    ],
+    "scale": {
+      "h1": "text-5xl md:text-7xl font-bold tracking-tight leading-none",
+      "h2": "text-4xl md:text-5xl font-semibold tracking-tight",
+      "h3": "text-2xl md:text-3xl font-medium",
+      "body_lg": "text-lg md:text-xl leading-relaxed",
+      "body": "text-base leading-relaxed text-muted-foreground",
+      "caption": "text-sm font-medium tracking-wide uppercase text-muted-foreground/80"
+    }
+  },
+  "colors": {
+    "palette_strategy": "Light Mode with Vibrant Color Blocking",
+    "tailwind_config": {
+      "base": {
+        "background": "30 30% 99%", 
+        "foreground": "150 40% 10%" 
+      },
+      "brand": {
+        "primary": "340 85% 60%", 
+        "primary_foreground": "0 0% 100%",
+        "secondary": "45 95% 60%",
+        "secondary_foreground": "150 40% 10%",
+        "accent": "260 70% 70%", 
+        "accent_foreground": "0 0% 100%"
+      },
+      "ui": {
+        "card": "0 0% 100%",
+        "card_foreground": "150 40% 10%",
+        "border": "30 10% 90%",
+        "input": "30 10% 92%",
+        "ring": "340 85% 60%"
+      }
+    },
+    "usage_rules": [
+      "Background: Use 'bg-background' (Warm White) as the canvas.",
+      "Text: Use 'text-foreground' (Deep Jungle Green) for readability. NEVER pure black.",
+      "Primary (Vibrant Pink): Use for CTA buttons, sale tags, and 'Love' category highlights.",
+      "Secondary (Marigold Yellow): Use for 'Joy' category and highlights.",
+      "Accent (Soft Purple): Use for 'Sympathy' or 'Calm' sections.",
+      "Gradients: Subtle mesh gradients allowed in hero backgrounds only. No linear hard gradients on buttons."
+    ]
+  },
+  "layout_and_grid": {
+    "container": "container mx-auto px-4 md:px-8 max-w-7xl",
+    "section_spacing": "py-16 md:py-24",
+    "grid_systems": {
+      "bento_grid": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8",
+      "product_grid": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12",
+      "hero_split": "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+    },
+    "strategies": [
+      "Bento Grid for Categories: Use Mode A (Tetris Grid). Mix squares, tall rectangles, and wide blocks.",
+      "Asymmetry: In product lists, offset every 2nd card slightly (translate-y-4) to create rhythm.",
+      "Whitespace: Use 'p-8' or 'p-12' inside cards. Don't crowd the flowers."
+    ]
+  },
+  "components": {
+    "buttons": {
+      "primary": "rounded-full bg-primary text-white px-8 py-4 font-medium transition-all hover:scale-105 hover:shadow-lg active:scale-95",
+      "secondary": "rounded-full bg-secondary text-secondary-foreground px-8 py-4 font-medium transition-all hover:bg-secondary/80",
+      "outline": "rounded-full border-2 border-foreground/10 bg-transparent px-8 py-4 font-medium hover:bg-foreground/5"
+    },
+    "cards": {
+      "product": "group relative overflow-hidden rounded-2xl bg-white border border-border/50 transition-all hover:shadow-xl hover:border-primary/20",
+      "category": "relative overflow-hidden rounded-3xl p-8 transition-all hover:scale-[1.02]",
+      "feature": "bg-card rounded-xl p-8 border border-border shadow-sm"
+    },
+    "inputs": {
+      "default": "rounded-xl border-border bg-white/50 px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+    },
+    "navigation": {
+      "header": "fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-border/40 transition-all",
+      "link": "text-sm font-medium hover:text-primary transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full"
+    }
+  },
+  "visual_enhancers": {
+    "shadows": {
+      "soft": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+      "glow": "shadow-[0_0_20px_rgba(255,107,107,0.3)]"
+    },
+    "border_radius": {
+      "default": "rounded-2xl",
+      "large": "rounded-3xl",
+      "pill": "rounded-full"
+    },
+    "textures": [
+      "Grain Overlay: Add a fixed 'opacity-[0.03] pointer-events-none mix-blend-multiply' noise texture to the entire body.",
+      "Organic Shapes: Use SVG blobs in the background for section dividers."
+    ]
+  },
+  "motion": {
+    "library": "framer-motion",
+    "animations": {
+      "fade_in_up": {
+        "initial": { "opacity": 0, "y": 20 },
+        "animate": { "opacity": 1, "y": 0 },
+        "transition": { "duration": 0.5, "ease": "easeOut" }
+      },
+      "stagger_children": {
+        "container": {
+          "hidden": { "opacity": 0 },
+          "show": {
+            "opacity": 1,
+            "transition": { "staggerChildren": 0.1 }
+          }
+        },
+        "item": {
+          "hidden": { "opacity": 0, "y": 20 },
+          "show": { "opacity": 1, "y": 0 }
+        }
+      },
+      "hover_scale": {
+        "whileHover": { "scale": 1.05 },
+        "transition": { "type": "spring", "stiffness": 300 }
+      }
+    }
+  },
+  "assets": {
+    "image_style": "High-quality, vibrant, natural light. No artificial studio lighting unless it's pop-art style.",
+    "icons_library": "lucide-react",
+    "image_urls": {
+      "hero_images": [
+        "https://images.unsplash.com/photo-1760881564993-d7f6587b68d7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwyfHxwZXJzb24lMjBob2xkaW5nJTIwZmxvd2VycyUyMGdpZnQlMjBoYXBweXxlbnwwfHx8fDE3NzM5ODAzMDF8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1766041669885-9716fa4bb3f1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBob2xkaW5nJTIwZmxvd2VycyUyMGdpZnQlMjBoYXBweXxlbnwwfHx8fDE3NzM5ODAzMDF8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.pexels.com/photos/3621490/pexels-photo-3621490.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+      ],
+      "product_placeholders": [
+        "https://images.unsplash.com/photo-1768448595323-92ded21be885?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwzfHx2aWJyYW50JTIwZmxvd2VyJTIwYm91cXVldCUyMHdoaXRlJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzM5ODAyOTl8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1768448587668-35994cd84db0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwyfHx2aWJyYW50JTIwZmxvd2VyJTIwYm91cXVldCUyMHdoaXRlJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzM5ODAyOTl8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1768448601132-67df7d32e5a5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwxfHx2aWJyYW50JTIwZmxvd2VyJTIwYm91cXVldCUyMHdoaXRlJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzM5ODAyOTl8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1768448581878-b52637049bda?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHw0fHx2aWJyYW50JTIwZmxvd2VyJTIwYm91cXVldCUyMHdoaXRlJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzM5ODAyOTl8MA&ixlib=rb-4.1.0&q=85"
+      ],
+      "categories": [
+        { "name": "Love & Romance", "color": "bg-primary/10 text-primary", "image": "https://images.pexels.com/photos/6708972/pexels-photo-6708972.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" },
+        { "name": "Joy & Celebration", "color": "bg-secondary/20 text-secondary-foreground", "image": "https://images.unsplash.com/photo-1570378105997-1fb0e1b6a94e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBob2xkaW5nJTIwZmxvd2VycyUyMGdpZnQlMjBoYXBweXxlbnwwfHx8fDE3NzM5ODAzMDF8MA&ixlib=rb-4.1.0&q=85" },
+        { "name": "Sympathy", "color": "bg-accent/20 text-foreground", "image": "https://images.unsplash.com/photo-1768236872781-60ec6f90d972?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHw0fHxwZXJzb24lMjBob2xkaW5nJTIwZmxvd2VycyUyMGdpZnQlMjBoYXBweXxlbnwwfHx8fDE3NzM5ODAzMDF8MA&ixlib=rb-4.1.0&q=85" }
+      ]
+    }
+  },
+  "instructions_to_main_agent": [
+    "INSTALL FONTS FIRST: Run 'yarn add @fontsource/playfair-display @fontsource/manrope @fontsource/caveat' immediately.",
+    "TAILWIND CONFIG: Update 'tailwind.config.js' with the specific HSL color values provided in 'colors.tailwind_config'. Do NOT rely on defaults.",
+    "SHADCN OVERRIDES: The default shadcn components are too 'enterprise'. You MUST round the corners more (radius: 1rem) and increase padding.",
+    "NO DEFAULT CARDS: Do not use the standard Shadcn 'Card' component for the main product list. Build a custom 'ProductCard' component using the 'cards.product' classes defined above.",
+    "ANIMATION IS KEY: Use 'framer-motion' for page transitions. Wrap the 'Routes' in 'AnimatePresence' if possible, or at least animate section entrances.",
+    "TESTING: Every button and input must have a 'data-testid'. Example: 'add-to-cart-btn', 'email-input'.",
+    "HEADER: Make the header sticky and glassmorphic. It should feel like it's floating.",
+    "IMAGES: Use the provided image URLs. Do not use placeholders.",
+    "ICONS: Use 'lucide-react' for icons. Keep them thin and elegant."
+  ],
+  "UNIVERSAL_GUIDELINES": [
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "Use glass-morphism effects with backdrop filters (12-24px blur)",
+    "You MUST NOT apply universal transition. Eg: transition: all.",
+    "You MUST NOT center align the app container.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
+    "NEVER: use AI assistant Emoji characters for icons.",
+    "Every interaction needs micro-animations.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "Components MUST use named exports.",
+    "Use 'sonner' for toasts."
+  ]
+}
