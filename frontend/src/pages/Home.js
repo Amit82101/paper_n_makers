@@ -28,7 +28,7 @@ const Home = () => {
   const features = [
     {
       icon: <Heart className="w-8 h-8 text-primary" />,
-      title: 'Fresh & Vibrant',
+      title: 'Vibrant',
       description: 'Handpicked flowers delivered daily to ensure maximum freshness'
     },
     {

@@ -18,7 +18,7 @@ const Header = () => {
           <Link to="/" className="flex items-center space-x-2 group" data-testid="logo-link">
             <Flower2 className="w-8 h-8 text-primary group-hover:rotate-12 transition-transform" />
             <span className="text-2xl font-heading font-bold tracking-tight text-foreground">
-              Bloom & Vibe
+              paper.n.makers
             </span>
           </Link>
 

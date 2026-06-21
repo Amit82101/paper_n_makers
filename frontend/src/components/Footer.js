@@ -76,7 +76,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2026 Bloom & Vibe. All rights reserved.</p>
+          <p>&copy; 2026 paper.n.makers. All rights reserved.</p>
         </div>
       </div>
     </footer>

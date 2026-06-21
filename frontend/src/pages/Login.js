@@ -56,7 +56,7 @@ const Login = () => {
           >
             <div className="flex items-center space-x-2 mb-8">
               <Flower2 className="w-8 h-8 text-primary" />
-              <span className="text-2xl font-heading font-bold">Bloom & Vibe</span>
+              <span className="text-2xl font-heading font-bold">Paper.n.makers</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-heading font-semibold tracking-tight mb-4">
