@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Flower2, ShoppingCart, User, Menu, X, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
+import logo from "../assets/images/logo.png";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -16,7 +17,11 @@ const Header = () => {
       <nav className="container mx-auto px-4 md:px-8 max-w-7xl">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-2 group" data-testid="logo-link">
-            <Flower2 className="w-8 h-8 text-primary group-hover:rotate-12 transition-transform" />
+           <img
+  src={logo}
+  alt="Paper N Makers"
+  className="h-10 w-auto transition-transform group-hover:scale-105"
+/>
             <span className="text-2xl font-heading font-bold tracking-tight text-foreground">
               paper.n.makers
             </span>

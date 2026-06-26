@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'sonner';
-import useRazorpay from 'react-razorpay';
+
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -13,7 +13,7 @@ const Checkout = () => {
   const navigate = useNavigate();
   const { cart, clearCart } = useCart();
   const { user, isAuthenticated } = useAuth();
-  const [Razorpay] = useRazorpay();
+  
   const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -129,7 +129,7 @@ const Checkout = () => {
         }
       };
 
-      const rzp = new Razorpay(options);
+      const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (error) {
       console.error('Error creating order:', error);
