@@ -17,7 +17,7 @@ const Checkout = () => {
   const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [razorpayKey, setRazorpayKey] = useState('');
+  
 
   const [formData, setFormData] = useState({
     delivery_date: '',
@@ -69,74 +69,72 @@ const Checkout = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
+  e.preventDefault();
+  setSubmitting(true);
 
-    try {
-      const orderData = {
-        ...formData,
-        items: cart,
-        total_amount: calculateTotal()
-      };
+  try {
+    const orderData = {
+      ...formData,
+      items: cart,
+      total_amount: calculateTotal()
+    };
 
-      const orderResponse = await axios.post(`${API}/orders/create`, orderData);
-      const order = orderResponse.data;
+    // Save order in database
+    await axios.post(`${API}/orders/create`, orderData);
 
-      if (!razorpayKey || !order.razorpay_order_id) {
-        toast.error('Payment gateway not configured');
-        setSubmitting(false);
-        return;
-      }
+    const whatsappNumber = "918210133353";
 
-      const options = {
-        key: razorpayKey,
-        amount: order.total_amount * 100,
-        currency: 'INR',
-        name: 'Bloom & Vibe',
-        description: 'Flower Purchase',
-        order_id: order.razorpay_order_id,
-        handler: async (response) => {
-          try {
-            await axios.post(`${API}/orders/verify-payment`, {
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-              order_id: order.id
-            });
+    const productNames = cart
+      .map(item => {
+        const product = products[item.product_id];
+        return product
+          ? `${product.name} x ${item.quantity}`
+          : "";
+      })
+      .filter(Boolean)
+      .join(", ");
 
-            toast.success('Order placed successfully!');
-            clearCart();
-            navigate(`/orders/${order.id}`);
-          } catch (error) {
-            toast.error('Payment verification failed');
-            console.error('Payment verification error:', error);
-          }
-          setSubmitting(false);
-        },
-        prefill: {
-          name: user.name,
-          email: user.email,
-          contact: formData.recipient_phone
-        },
-        theme: {
-          color: '#f472b6'
-        },
-        modal: {
-          ondismiss: () => {
-            setSubmitting(false);
-            toast.error('Payment cancelled');
-          }
-        }
-      };
+    const message = `
+🌸 New Flower Order
 
-      const rzp = new window.Razorpay(options);
-      rzp.open();
-    } catch (error) {
-      console.error('Error creating order:', error);
-      toast.error('Failed to create order');
-      setSubmitting(false);
-    }
-  };
+Customer: ${user?.name || ""}
+Recipient: ${formData.recipient_name}
+Phone: ${formData.recipient_phone}
+
+Address:
+${formData.delivery_address}
+
+Products:
+${productNames}
+
+Total Amount: ₹${calculateTotal()}
+
+Delivery Date: ${formData.delivery_date}
+Delivery Time: ${formData.delivery_time}
+
+Gift Message:
+${formData.gift_message || "N/A"}
+`;
+
+    const whatsappUrl =
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    clearCart();
+
+    toast.success("Opening WhatsApp...");
+
+    window.open(whatsappUrl, "_blank");
+
+    setSubmitting(false);
+
+  } catch (error) {
+    console.error("Error creating order:", error);
+    toast.error("Failed to create order");
+    setSubmitting(false);
+  }
+};
+
+       
 
   if (loading) {
     return (
@@ -258,7 +256,7 @@ const Checkout = () => {
                 className="w-full rounded-full bg-primary text-white px-8 py-4 font-medium transition-all hover:scale-105 hover:shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                 data-testid="place-order-button"
               >
-                {submitting ? 'Processing...' : 'Proceed to Payment'}
+                {submitting ? 'Opening WhatsApp...' : 'Order on WhatsApp'}
               </button>
             </form>
           </div>
