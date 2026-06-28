@@ -16,7 +16,7 @@ const OrderDetail = () => {
   const [order, setOrder] = useState(null);
   const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (isAuthenticated) {
       fetchOrder();

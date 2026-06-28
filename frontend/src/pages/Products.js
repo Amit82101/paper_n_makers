@@ -17,11 +17,11 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'all');
   const [selectedOccasion, setSelectedOccasion] = useState(searchParams.get('occasion') || 'all');
   const { addToCart } = useCart();
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchProducts();
   }, []);
-
+ // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     filterProducts();
   }, [products, searchQuery, selectedCategory, selectedOccasion]);

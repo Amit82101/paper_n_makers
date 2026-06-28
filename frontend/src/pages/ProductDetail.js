@@ -15,7 +15,7 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchProduct();
   }, [id]);
