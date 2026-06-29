@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-export const API = process.env.REACT_APP_BACKEND_URL;
-
+export const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export const ENDPOINTS = {
   AUTH: {
