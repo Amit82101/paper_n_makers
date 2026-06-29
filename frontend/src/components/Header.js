@@ -15,7 +15,7 @@ const Header = () => {
     <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-border/40 transition-all">
       <div className="grain-overlay" />
       <nav className="container mx-auto px-4 md:px-8 max-w-7xl">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-14">
           <Link to="/" className="flex items-center space-x-2 group" data-testid="logo-link">
            <img
   src={logo}
