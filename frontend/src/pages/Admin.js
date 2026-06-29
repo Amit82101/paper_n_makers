@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import { orderService, productService } from '../services/apiServices';
 import { useAuth } from '../context/AuthContext';
 import { Plus, Pencil, Trash2, Package } from 'lucide-react';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const Admin = () => {
   const { user } = useAuth();
@@ -39,8 +37,8 @@ const Admin = () => {
   const fetchData = async () => {
     try {
       const [productsRes, ordersRes] = await Promise.all([
-        axios.get(`${API}/products`),
-        axios.get(`${API}/orders`)
+        productService.getAll(),
+        orderService.getAll()
       ]);
       setProducts(productsRes.data);
       setOrders(ordersRes.data);
@@ -56,14 +54,14 @@ const Admin = () => {
     e.preventDefault();
     try {
       if (editingProduct) {
-        await axios.put(`${API}/products/${editingProduct.id}`, {
+        await productService.update(editingProduct.id, {
           ...productForm,
           price: parseFloat(productForm.price),
           stock: parseInt(productForm.stock)
         });
         toast.success('Product updated successfully');
       } else {
-        await axios.post(`${API}/products`, {
+        await productService.create({
           ...productForm,
           price: parseFloat(productForm.price),
           stock: parseInt(productForm.stock)
@@ -90,7 +88,7 @@ const Admin = () => {
   const handleDeleteProduct = async (id) => {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
     try {
-      await axios.delete(`${API}/products/${id}`);
+      await productService.delete(id);
       toast.success('Product deleted successfully');
       fetchData();
     } catch (error) {
@@ -114,7 +112,7 @@ const Admin = () => {
 
   const handleUpdateOrderStatus = async (orderId, status) => {
     try {
-      await axios.put(`${API}/orders/${orderId}/status?order_status=${status}`);
+      await orderService.updateStatus(orderId, status);
       toast.success('Order status updated');
       fetchData();
     } catch (error) {

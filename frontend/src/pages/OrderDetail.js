@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import { orderService, productService } from '../services/apiServices';
 import { useAuth } from '../context/AuthContext';
 import { Calendar, MapPin, MessageSquare, Package, ArrowLeft } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
+<<<<<<< Updated upstream
 const API = process.env.REACT_APP_BACKEND_URL
   ? `${process.env.REACT_APP_BACKEND_URL}/api`
   : "http://localhost:8000/api";
 
+=======
+>>>>>>> Stashed changes
 const OrderDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -27,11 +30,11 @@ const OrderDetail = () => {
 
   const fetchOrder = async () => {
     try {
-      const orderResponse = await axios.get(`${API}/orders/${id}`);
+      const orderResponse = await orderService.getById(id);
       setOrder(orderResponse.data);
 
       const productPromises = orderResponse.data.items.map(item =>
-        axios.get(`${API}/products/${item.product_id}`)
+        productService.getById(item.product_id)
       );
       const productResponses = await Promise.all(productPromises);
 

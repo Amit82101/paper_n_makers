@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import { orderService, paymentService, productService } from '../services/apiServices';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'sonner';
-
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -43,8 +40,8 @@ const Checkout = () => {
   const fetchData = async () => {
     try {
       const [productsResponse, keyResponse] = await Promise.all([
-        Promise.all(cart.map(item => axios.get(`${API}/products/${item.product_id}`))),
-        axios.get(`${API}/razorpay-key`)
+        Promise.all(cart.map(item => productService.getById(item.product_id))),
+        paymentService.getRazorpayKey()
       ]);
 
       const productsMap = {};
@@ -80,7 +77,7 @@ const Checkout = () => {
     };
 
     // Save order in database
-    await axios.post(`${API}/orders/create`, orderData);
+    await orderService.create(orderData);
 
     const whatsappNumber = "918210133353";
 

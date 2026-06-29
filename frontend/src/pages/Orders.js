@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import { orderService } from '../services/apiServices';
 import { useAuth } from '../context/AuthContext';
 import { Package, Calendar, MapPin, MessageSquare } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
+<<<<<<< Updated upstream
 const API = process.env.REACT_APP_BACKEND_URL
   ? `${process.env.REACT_APP_BACKEND_URL}/api`
   : "http://localhost:8000/api";
 
+=======
+>>>>>>> Stashed changes
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,7 +27,7 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get(`${API}/orders`);
+      const response = await orderService.getAll();
       setOrders(response.data);
       setLoading(false);
     } catch (error) {

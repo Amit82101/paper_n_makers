@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import { productService } from '../services/apiServices';
 import { Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'sonner';
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const Cart = () => {
   const { cart, updateQuantity, removeFromCart } = useCart();
@@ -23,7 +21,7 @@ const Cart = () => {
   const fetchProducts = async () => {
     try {
       const productIds = cart.map(item => item.product_id);
-      const productPromises = productIds.map(id => axios.get(`${API}/products/${id}`));
+      const productPromises = productIds.map(id => productService.getById(id));
       const responses = await Promise.all(productPromises);
       
       const productsMap = {};

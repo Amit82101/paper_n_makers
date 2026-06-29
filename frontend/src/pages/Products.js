@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
-import axios from 'axios';
+import { productService } from '../services/apiServices';
 import { ShoppingCart, Search, Filter } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { toast } from 'sonner';
 
+<<<<<<< Updated upstream
 const API = process.env.REACT_APP_BACKEND_URL
   ? `${process.env.REACT_APP_BACKEND_URL}/api`
   : "http://localhost:8000/api";
 
+=======
+>>>>>>> Stashed changes
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -30,7 +33,7 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`${API}/products`);
+      const response = await productService.getAll();
       setProducts(response.data);
       setLoading(false);
     } catch (error) {

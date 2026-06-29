@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import { productService } from '../services/apiServices';
 import { ShoppingCart, Minus, Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { toast } from 'sonner';
 
+<<<<<<< Updated upstream
 const API = process.env.REACT_APP_BACKEND_URL
   ? `${process.env.REACT_APP_BACKEND_URL}/api`
   : "http://localhost:8000/api";
 
+=======
+>>>>>>> Stashed changes
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,7 +27,7 @@ const ProductDetail = () => {
 
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`${API}/products/${id}`);
+      const response = await productService.getById(id);
       setProduct(response.data);
       setLoading(false);
     } catch (error) {

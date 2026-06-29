@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import { cartService } from '../services/apiServices';
 import { useAuth } from './AuthContext';
 
 const CartContext = createContext(null);
@@ -11,8 +11,6 @@ export const useCart = () => {
   }
   return context;
 };
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
@@ -31,7 +29,7 @@ export const CartProvider = ({ children }) => {
 
   const fetchCart = async () => {
     try {
-      const response = await axios.get(`${API}/cart`);
+      const response = await cartService.get();
       setCart(response.data.items || []);
     } catch (error) {
       console.error('Error fetching cart:', error);
@@ -56,7 +54,7 @@ export const CartProvider = ({ children }) => {
 
     if (isAuthenticated) {
       try {
-        await axios.post(`${API}/cart`, newCart);
+        await cartService.update(newCart);
       } catch (error) {
         console.error('Error updating cart:', error);
       }
@@ -79,7 +77,7 @@ export const CartProvider = ({ children }) => {
 
     if (isAuthenticated) {
       try {
-        await axios.post(`${API}/cart`, newCart);
+        await cartService.update(newCart);
       } catch (error) {
         console.error('Error updating cart:', error);
       }
@@ -94,7 +92,7 @@ export const CartProvider = ({ children }) => {
 
     if (isAuthenticated) {
       try {
-        await axios.post(`${API}/cart`, newCart);
+        await cartService.update(newCart);
       } catch (error) {
         console.error('Error updating cart:', error);
       }
@@ -107,7 +105,7 @@ export const CartProvider = ({ children }) => {
     setCart([]);
     if (isAuthenticated) {
       try {
-        await axios.post(`${API}/cart`, []);
+        await cartService.update([]);
       } catch (error) {
         console.error('Error clearing cart:', error);
       }
