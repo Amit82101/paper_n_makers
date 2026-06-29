@@ -7,13 +7,6 @@ import { Calendar, MapPin, MessageSquare, Package, ArrowLeft } from 'lucide-reac
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
-<<<<<<< Updated upstream
-const API = process.env.REACT_APP_BACKEND_URL
-  ? `${process.env.REACT_APP_BACKEND_URL}/api`
-  : "http://localhost:8000/api";
-
-=======
->>>>>>> Stashed changes
 const OrderDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
