@@ -6,7 +6,9 @@ import { ShoppingCart, Minus, Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { toast } from 'sonner';
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const API = process.env.REACT_APP_BACKEND_URL
+  ? `${process.env.REACT_APP_BACKEND_URL}/api`
+  : "http://localhost:8000/api";
 
 const ProductDetail = () => {
   const { id } = useParams();

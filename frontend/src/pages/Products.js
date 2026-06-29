@@ -6,7 +6,9 @@ import { ShoppingCart, Search, Filter } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { toast } from 'sonner';
 
-const API =  `${process.env.REACT_APP_BACKEND_URL}/api`;
+const API = process.env.REACT_APP_BACKEND_URL
+  ? `${process.env.REACT_APP_BACKEND_URL}/api`
+  : "http://localhost:8000/api";
 
 const Products = () => {
   const [products, setProducts] = useState([]);

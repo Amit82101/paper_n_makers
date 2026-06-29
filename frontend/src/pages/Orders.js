@@ -7,7 +7,9 @@ import { Package, Calendar, MapPin, MessageSquare } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const API = process.env.REACT_APP_BACKEND_URL
+  ? `${process.env.REACT_APP_BACKEND_URL}/api`
+  : "http://localhost:8000/api";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
